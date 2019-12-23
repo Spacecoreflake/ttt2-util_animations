@@ -9,6 +9,10 @@ local duration = 3
 local animColor = Color(0, 0, 0, 120)
 local animStart = 0
 
+local animationt CreateConVar("animationtop","1",FCVAR_ARCHIVE,"Sets top part of Animation")
+local animationb CreateConVar("animationbot","5",FCVAR_ARCHIVE,"Sets bottom part of Animation")
+
+
 local function ShadowedText(text, font, x, y, color, xalign, yalign)
 	draw.SimpleText(text, font, x + 2, y + 2, COLOR_BLACK, xalign, yalign)
 	draw.SimpleText(text, font, x, y, color, xalign, yalign)
@@ -43,6 +47,7 @@ hook.Add("HUDPaint", "TTT2PaintRoleAnim", function()
 		local multiplicator = CubicBezier(0.1, 0.8, 0.9, 0.2, (CurTime() - animStart) / duration)
 
 		local sx, ex = 0, ScrW()
+		--local y1, y2 = ScrH() / 9 * animationt:GetInt(), ScrH() / 9 * animationb:GetInt() --height of the banner (y1 beeing topmost y2 being bottom most.)
 		local y1, y2 = ScrH() / 9 * 1, ScrH() / 9 * 2 --height of the banner (y1 beeing topmost y2 being bottom most.)
 		local yt = (y2 + y1) / 2 -- A helper value which centers the text height based on y1 and y2
 
